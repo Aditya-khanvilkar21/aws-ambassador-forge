@@ -80,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Snehal Swami — Aspiring AWS Cloud Engineer" },
       { name: "description", content: "Portfolio of Snehal Swami — designing scalable cloud infrastructure with AWS, Linux, Docker, Kubernetes and Terraform." },
       { name: "author", content: "Snehal Swami" },
+      { name: "google-site-verification", content: "tZK-C0-0EejAl1nhraQ4eq1YSkPar6ASfNGy_h5b7fA" },
       { property: "og:title", content: "Snehal Swami — Aspiring AWS Cloud Engineer" },
       { property: "og:description", content: "Portfolio of Snehal Swami — designing scalable cloud infrastructure with AWS, Linux, Docker, Kubernetes and Terraform." },
       { property: "og:type", content: "website" },
