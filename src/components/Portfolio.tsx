@@ -8,6 +8,13 @@ import {
 } from "lucide-react";
 import snehal from "@/assets/snehal.jpeg.asset.json";
 
+// ============ CONTACT CONSTANTS ============
+const EMAIL = "snehalswami1192@gmail.com";
+const LINKEDIN_URL = "https://www.linkedin.com/in/snehal-swami-798a5a381?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+const WHATSAPP_NUMBER = "917823072063"; // E.164 without '+'
+const GITHUB_URL = "https://github.com/snehal-2121";
+
+
 // ============ HELPERS ============
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -17,7 +24,7 @@ const stagger = { show: { transition: { staggerChildren: 0.08 } } };
 
 function Section({ id, children, className = "" }: { id?: string; children: React.ReactNode; className?: string }) {
   return (
-    <section id={id} className={`relative mx-auto w-full max-w-7xl px-6 py-24 md:py-32 ${className}`}>
+    <section id={id} className={`relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 sm:py-24 md:py-32 ${className}`}>
       {children}
     </section>
   );
@@ -156,10 +163,11 @@ function Hero() {
             </a>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="mt-10 flex items-center gap-6 text-sm text-muted-foreground">
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" /> Barshi, Maharashtra</div>
-            <a href="https://linkedin.com/in/snehal-swami" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-foreground"><Linkedin className="h-4 w-4" /> LinkedIn</a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-foreground"><Linkedin className="h-4 w-4" /> LinkedIn</a>
             <a href="https://github.com/snehal-2121" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-foreground"><Github className="h-4 w-4" /> GitHub</a>
+            <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 transition hover:text-foreground"><Mail className="h-4 w-4" /> Email</a>
           </motion.div>
         </motion.div>
 
@@ -615,55 +623,77 @@ function Journey() {
 
 // ============ CONTACT ============
 function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.message.trim()) return;
+    setSending(true);
+    const text =
+      `Hi Snehal, I'm ${form.name}.\n` +
+      (form.email ? `Email: ${form.email}\n` : "") +
+      (form.subject ? `Subject: ${form.subject}\n` : "") +
+      `\n${form.message}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+    setTimeout(() => setSending(false), 800);
+  };
+
   return (
     <Section id="contact">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-card/40 p-8 md:p-14">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-card/40 p-6 sm:p-8 md:p-14">
         <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
         <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
-        <div className="relative grid gap-12 md:grid-cols-2">
+        <div className="relative grid gap-10 md:grid-cols-2 md:gap-12">
           <div>
             <SectionLabel>Contact</SectionLabel>
-            <h2 className="text-4xl font-bold md:text-5xl">Let's build the <span className="text-gradient-brand">cloud together</span></h2>
+            <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Let's build the <span className="text-gradient-brand">cloud together</span></h2>
             <p className="mt-4 max-w-md text-muted-foreground">
               Open to internships, junior cloud engineer roles, and collaborations on AWS/DevOps projects.
             </p>
             <div className="mt-8 space-y-3">
-              <a href="mailto:snehal.swami@example.com" className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition hover:border-accent/40">
-                <Mail className="h-5 w-5 text-accent" /> snehal.swami@example.com
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:border-accent/40 sm:text-base">
+                <Mail className="h-5 w-5 shrink-0 text-accent" /> <span className="truncate">{EMAIL}</span>
               </a>
-              <a href="https://linkedin.com/in/snehal-swami" target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition hover:border-accent/40">
-                <Linkedin className="h-5 w-5 text-accent" /> linkedin.com/in/snehal-swami
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:border-accent/40 sm:text-base">
+                <Linkedin className="h-5 w-5 shrink-0 text-accent" /> <span className="truncate">linkedin.com/in/snehal-swami</span>
               </a>
-              <a href="https://github.com/snehal-2121" target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition hover:border-accent/40">
-                <Github className="h-5 w-5 text-accent" /> github.com/snehal-2121
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:border-accent/40 sm:text-base">
+                <svg className="h-5 w-5 shrink-0 text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.05 0C5.5 0 .17 5.33.17 11.88c0 2.09.55 4.13 1.6 5.93L0 24l6.34-1.66a11.88 11.88 0 0 0 5.7 1.45h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.23-6.16-3.41-8.43zM12.05 21.3h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.76.99 1-3.67-.22-.38a9.42 9.42 0 1 1 17.5-4.86c0 5.21-4.23 9.43-9.38 9.43zm5.45-7.06c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.22 1.35.19 1.86.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+                <span className="truncate">WhatsApp +91 78230 72063</span>
               </a>
-              <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                <MapPin className="h-5 w-5 text-accent" /> Barshi, Maharashtra, India
+              <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:border-accent/40 sm:text-base">
+                <Github className="h-5 w-5 shrink-0 text-accent" /> <span className="truncate">github.com/snehal-2121</span>
+              </a>
+              <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm sm:text-base">
+                <MapPin className="h-5 w-5 shrink-0 text-accent" /> Barshi, Maharashtra, India
               </div>
             </div>
           </div>
-          <form onSubmit={(e) => e.preventDefault()} className="glass-strong space-y-4 rounded-2xl p-6">
+          <form onSubmit={handleSubmit} className="glass-strong space-y-4 rounded-2xl p-5 sm:p-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Name</span>
-                <input required className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
+                <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
               </label>
               <label className="block">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Email</span>
-                <input type="email" required className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
+                <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
               </label>
             </div>
             <label className="block">
               <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Subject</span>
-              <input className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
+              <input value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
             </label>
             <label className="block">
               <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Message</span>
-              <textarea rows={5} className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
+              <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2 outline-none focus:border-accent" />
             </label>
-            <button className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-3 font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-accent/50">
-              Send Message <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            <button type="submit" disabled={sending} className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-3 font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-accent/50 disabled:opacity-70">
+              {sending ? "Opening WhatsApp…" : "Send via WhatsApp"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </button>
+            <p className="text-center text-xs text-muted-foreground">Your message opens in WhatsApp and is sent to Snehal directly.</p>
           </form>
         </div>
       </div>
