@@ -8,6 +8,13 @@ import {
 } from "lucide-react";
 import snehal from "@/assets/snehal.jpeg.asset.json";
 
+// ============ CONTACT CONSTANTS ============
+const EMAIL = "snehalswami1192@gmail.com";
+const LINKEDIN_URL = "https://www.linkedin.com/in/snehal-swami-798a5a381?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+const WHATSAPP_NUMBER = "917823072063"; // E.164 without '+'
+const GITHUB_URL = "https://github.com/snehal-2121";
+
+
 // ============ HELPERS ============
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
