@@ -156,10 +156,11 @@ function Hero() {
             </a>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="mt-10 flex items-center gap-6 text-sm text-muted-foreground">
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" /> Barshi, Maharashtra</div>
-            <a href="https://linkedin.com/in/snehal-swami" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-foreground"><Linkedin className="h-4 w-4" /> LinkedIn</a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-foreground"><Linkedin className="h-4 w-4" /> LinkedIn</a>
             <a href="https://github.com/snehal-2121" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-foreground"><Github className="h-4 w-4" /> GitHub</a>
+            <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 transition hover:text-foreground"><Mail className="h-4 w-4" /> Email</a>
           </motion.div>
         </motion.div>
 
