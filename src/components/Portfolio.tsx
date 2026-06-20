@@ -52,7 +52,7 @@ function Navbar() {
       className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4"
     >
       <nav className="glass-strong flex items-center gap-1 rounded-full px-2 py-2 shadow-2xl">
-        <a href="#top" className="flex items-center gap-2 rounded-full px-3 py-1.5 font-display text-sm font-semibold">
+        <a href="#top" aria-label="Snehal Swami - Home" className="flex items-center gap-2 rounded-full px-3 py-1.5 font-display text-sm font-semibold">
           <Cloud className="h-4 w-4 text-accent" />
           <span className="hidden sm:inline">Snehal Swami</span>
         </a>
