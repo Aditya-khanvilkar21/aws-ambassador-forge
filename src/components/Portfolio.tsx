@@ -402,53 +402,231 @@ function Architecture() {
 }
 
 // ============ PROJECTS ============
-const PROJECTS = [
+type Project = {
+  title: string;
+  role: string;
+  tag: string;
+  category: string;
+  timeline: string;
+  featured?: boolean;
+  Icon: React.ComponentType<{ className?: string }>;
+  problem: string;
+  solution: string;
+  overview: string;
+  features: string[];
+  stack: string[];
+  arch: string[];
+  challenges: { title: string; desc: string }[];
+  learnings: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+};
+
+const PROJECTS: Project[] = [
   {
-    title: "Skill-to-Cloud Roadmap Engine",
-    tag: "Recommendation System",
-    problem: "Learners struggle to choose the right cloud path among hundreds of services and certifications.",
-    overview: "A recommendation engine that suggests personalized cloud learning paths based on a user's skills and interests.",
-    features: ["Skill-based recommendations", "AWS service suggestions", "Learning roadmap generation", "Cloud certification guidance"],
-    stack: ["Python", "Flask", "MySQL", "HTML", "CSS", "Bootstrap"],
-    arch: ["User Input", "Flask API", "Rules Engine", "MySQL", "Roadmap UI"],
+    title: "Crackly",
+    role: "Founder & Full-Stack Developer",
+    tag: "EdTech · CBT Platform",
+    category: "Product",
+    timeline: "2025 — Ongoing",
+    featured: true,
+    Icon: GraduationCap,
+    problem:
+      "Indian competitive exam aspirants (JEE, NEET, MHT-CET, GATE) lack an affordable, exam-realistic CBT platform. Existing tools are either paywalled, laggy, or don't render mathematical and scientific notation correctly — a dealbreaker for STEM prep.",
+    solution:
+      "Crackly is a browser-based Computer Based Testing platform purpose-built for Indian competitive exams. It delivers a pixel-accurate replica of the real exam interface, renders LaTeX/KaTeX flawlessly, tracks per-topic performance, and works reliably on low-end devices.",
+    overview:
+      "A production EdTech platform combining timed mock tests, live analytics, adaptive practice, and detailed solution walkthroughs — all in one exam-realistic environment students can trust the night before an exam.",
+    features: [
+      "Real exam simulation with question palette, timer & section switching",
+      "KaTeX rendering for math, physics & chemistry equations",
+      "Instant scoring, percentile & topic-wise analytics",
+      "Auth, attempt history & resume-in-progress support",
+      "Admin console to author question banks and mock papers",
+      "Mobile-responsive, works on 2G-tier networks",
+    ],
+    stack: ["React", "TypeScript", "Tailwind CSS", "Supabase (Postgres + Auth)", "KaTeX", "Vite", "Framer Motion"],
+    arch: ["React + Vite SPA", "Supabase Auth", "Postgres (RLS)", "Realtime Attempts", "Edge Functions", "CDN Delivery"],
+    challenges: [
+      { title: "Accurate math rendering", desc: "Balancing KaTeX bundle size vs. offline availability while keeping paint under 100ms on mid-tier phones." },
+      { title: "Cheat-resistant timers", desc: "Server-authoritative timing so tab switches, refreshes, or clock tampering can't extend an attempt." },
+      { title: "Row-level security", desc: "Designing Postgres RLS so students only see their own attempts while admins can grade at scale." },
+    ],
+    learnings: [
+      "Shipping a real product taught me production-grade Supabase RLS and auth flows.",
+      "Learned to profile React re-renders — critical for a UI with a 180-question palette.",
+      "Understood that in EdTech, trust > features. One wrong answer key destroys credibility.",
+    ],
+    liveUrl: "https://crackly.in",
+    githubUrl: GITHUB_URL,
   },
   {
-    title: "Cloud Backpack",
-    tag: "Learning Tracker",
-    problem: "Self-taught engineers lose track of progress across multiple resources and certifications.",
-    overview: "A personal cloud learning tracker that helps users manage learning resources and monitor progress.",
-    features: ["Learning progress tracking", "Resource management", "Analytics dashboard", "Goal tracking"],
-    stack: ["AWS S3", "AWS EC2", "AWS RDS", "AWS IAM", "Python", "MySQL", "HTML", "CSS"],
-    arch: ["Route 53", "EC2 (Flask)", "RDS (MySQL)", "S3 (Assets)", "IAM Policies"],
+    title: "Digital Village Platform",
+    role: "Cloud & Backend Architect",
+    tag: "Cloud · Civic Tech",
+    category: "Infrastructure",
+    timeline: "2025",
+    Icon: Building2,
+    problem:
+      "Rural Indian villages lack digital infrastructure to access government schemes, land records, health services, and local commerce. Existing portals are urban-centric, single-language, and assume high-bandwidth users.",
+    solution:
+      "A cloud-hosted, multi-tenant platform where each village gets its own lightweight portal — with citizen services, notices, schemes and grievance workflows — deployed on cost-optimized AWS infrastructure that scales from 100 to 10,000 residents.",
+    overview:
+      "An AWS-native platform combining EC2, RDS, S3 and CloudFront to deliver a fast, offline-tolerant civic experience for rural India, with per-village isolation and Marathi/Hindi/English support.",
+    features: [
+      "Multi-tenant village portals with themed sub-routes",
+      "Citizen registration, scheme discovery & application tracking",
+      "Grievance submission with status timelines",
+      "Notice board with SMS fallback for low-bandwidth users",
+      "Admin dashboard for sarpanch & gram sevaks",
+      "Bilingual UI (Marathi + English)",
+    ],
+    stack: ["AWS EC2", "AWS S3", "AWS RDS (MySQL)", "AWS CloudFront", "AWS IAM", "Route 53", "React", "Node.js"],
+    arch: ["Route 53 (DNS)", "CloudFront (CDN)", "ALB → EC2 (Node)", "RDS MySQL Multi-AZ", "S3 (Documents)", "CloudWatch (Ops)"],
+    challenges: [
+      { title: "Cost vs. scale", desc: "Designing an architecture that stays under ₹2,000/month at low load but auto-scales for census-driven traffic spikes." },
+      { title: "Offline tolerance", desc: "Service workers + IndexedDB queueing so form submissions survive flaky rural connectivity." },
+      { title: "Data residency", desc: "Keeping citizen data inside ap-south-1 while still using global CloudFront edges for static assets." },
+    ],
+    learnings: [
+      "Designed a production-shaped AWS 3-tier architecture end-to-end.",
+      "Understood how IAM least-privilege actually works on a real project.",
+      "Learned CloudFront cache invalidation is 90% of your operations pain.",
+    ],
+    githubUrl: GITHUB_URL,
+  },
+  {
+    title: "Taporatna Maha E-Seva",
+    role: "Frontend Developer",
+    tag: "GovTech · Bilingual UI",
+    category: "Product",
+    timeline: "2024",
+    Icon: BookOpen,
+    problem:
+      "Citizens in Maharashtra spend hours in queues at CSC (Common Service Centres) because scheme information is scattered across dozens of government portals — most in English-only, none mobile-first.",
+    solution:
+      "Taporatna is a unified, bilingual (Marathi + English) service catalog that indexes government schemes, documents required, eligibility, and fees — with a clean search-first UI designed for citizens using a shared kiosk device.",
+    overview:
+      "A React-based public service directory with fast client-side search, category filters, and shareable scheme URLs — reducing counter-clerk time per citizen by an estimated 40%.",
+    features: [
+      "Fast client-side search across 200+ services",
+      "Full Marathi / English toggle with URL persistence",
+      "Category filters (Revenue, Health, Education, Agriculture)",
+      "Print-friendly scheme pages for offline use",
+      "Copy-link sharing for WhatsApp forwards",
+    ],
+    stack: ["React", "TypeScript", "Tailwind CSS", "React Router", "Fuse.js"],
+    arch: ["React SPA", "Static Hosting", "Client-side Search Index", "Bilingual i18n Layer", "PWA Manifest"],
+    challenges: [
+      { title: "Marathi typography", desc: "Getting Devanagari to render crisply across Android WebView, low-DPI screens, and old kiosk machines." },
+      { title: "Data curation", desc: "Normalizing scheme metadata from PDFs and 15+ department portals into a consistent JSON schema." },
+      { title: "Zero-JS fallback", desc: "Making critical pages render legibly even when JavaScript is blocked on kiosk browsers." },
+    ],
+    learnings: [
+      "GovTech UX is 80% clarity, 20% code — every microcopy word matters.",
+      "Built strong instincts for accessibility on low-end Android devices.",
+      "Learned that bilingual UX is not translation — it's parallel design.",
+    ],
+    githubUrl: GITHUB_URL,
+  },
+  {
+    title: "Professional Portfolio",
+    role: "Designer & Developer",
+    tag: "Personal · Portfolio",
+    category: "Web",
+    timeline: "2026",
+    Icon: Rocket,
+    problem:
+      "Most developer portfolios read like résumés with animations bolted on — they don't communicate craft, taste, or engineering thinking to a hiring manager scanning in 30 seconds.",
+    solution:
+      "This site: a cloud-engineering portfolio built as an AWS console-inspired dark-mode experience. Every section is a design decision — floating service icons in the hero, an animated 3-tier architecture diagram, and a WhatsApp-native contact flow.",
+    overview:
+      "A polished, production-quality single-page portfolio designed to demonstrate both cloud thinking and modern frontend craft in a single scroll.",
+    features: [
+      "Animated 3-tier AWS architecture diagram (SVG + Framer Motion)",
+      "Glassmorphism UI with a coherent dark cloud-theme",
+      "Typewriter role rotator & floating cloud-service icons",
+      "WhatsApp-native contact form (no backend required)",
+      "SEO-optimized routes with per-page metadata",
+      "Fully responsive from 360px to 4K",
+    ],
+    stack: ["React", "TypeScript", "TanStack Start", "Tailwind CSS v4", "Framer Motion", "Lucide Icons"],
+    arch: ["TanStack Start SSR", "Vite Build", "Tailwind v4 Theme", "Edge Deploy", "CDN Assets"],
+    challenges: [
+      { title: "Visual restraint", desc: "Resisting the urge to animate everything — picking three signature motions and letting the rest breathe." },
+      { title: "Design tokenization", desc: "Building a full oklch-based dark theme with semantic tokens so every component stays on-brand without hardcoding." },
+      { title: "Mobile parity", desc: "Making a dense, animation-heavy layout feel calm on a 375px viewport without hiding key content." },
+    ],
+    learnings: [
+      "A portfolio is a product — treat it that way.",
+      "Motion is punctuation, not paragraph.",
+      "Design tokens compound: two hours of setup saves twenty hours of tweaking.",
+    ],
+    liveUrl: "https://snehalswami.in",
+    githubUrl: GITHUB_URL,
   },
 ];
 
-function ProjectCard({ p, i }: { p: typeof PROJECTS[number]; i: number }) {
+function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: () => void }) {
+  const Icon = p.Icon;
+  const featured = !!p.featured;
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: i * 0.1 }}
+      viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: i * 0.08 }}
       whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-card/60 p-1 backdrop-blur transition hover:border-accent/40 hover:shadow-[0_30px_80px_-20px_var(--color-primary)]">
+      className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-card/60 p-1 backdrop-blur transition hover:border-accent/40 hover:shadow-[0_30px_80px_-20px_var(--color-primary)] ${featured ? "md:col-span-2" : ""}`}>
       <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/0 via-accent/20 to-primary/0 opacity-0 transition group-hover:opacity-100" />
+      {featured && (
+        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+      )}
       <div className="relative rounded-[1.4rem] bg-card/80 p-6 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-accent">{p.tag}</span>
+          <div className="flex flex-wrap items-center gap-2">
+            {featured && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-aws/40 bg-aws/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-[oklch(0.85_0.16_60)]">
+                <Sparkles className="h-3 w-3" /> Featured
+              </span>
+            )}
+            <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-accent">{p.tag}</span>
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{p.timeline}</span>
+          </div>
           <div className="flex gap-2">
-            <a href="https://github.com/snehal-2121" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10"><Github className="h-3.5 w-3.5" /> GitHub</a>
-            <button className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-accent px-3 py-1.5 text-xs font-medium text-white">View Details <ExternalLink className="h-3.5 w-3.5" /></button>
+            {p.githubUrl && (
+              <a href={p.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10">
+                <Github className="h-3.5 w-3.5" /> Code
+              </a>
+            )}
+            {p.liveUrl && (
+              <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs text-accent hover:bg-accent/20">
+                <ExternalLink className="h-3.5 w-3.5" /> Live
+              </a>
+            )}
+            <button onClick={onOpen} className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-accent px-3 py-1.5 text-xs font-medium text-white shadow-lg shadow-primary/20">
+              Details <ArrowRight className="h-3.5 w-3.5" />
+            </button>
           </div>
         </div>
-        <h3 className="mt-4 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
-        <p className="mt-2 text-muted-foreground">{p.overview}</p>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
+        <div className="mt-5 flex items-start gap-4">
+          <div className={`flex flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-primary/40 to-accent/30 ring-1 ring-white/10 ${featured ? "h-16 w-16" : "h-12 w-12"}`}>
+            <Icon className={`text-white ${featured ? "h-8 w-8" : "h-6 w-6"}`} />
+          </div>
+          <div className="min-w-0">
+            <h3 className={`font-display font-bold ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}>{p.title}</h3>
+            <p className="mt-1 font-mono text-xs text-muted-foreground">{p.role}</p>
+          </div>
+        </div>
+
+        <p className="mt-4 text-muted-foreground">{p.overview}</p>
+
+        <div className={`mt-6 grid gap-6 ${featured ? "md:grid-cols-2" : ""}`}>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Problem</div>
-            <p className="mt-1 text-sm text-muted-foreground">{p.problem}</p>
+            <p className="mt-1 text-sm text-muted-foreground line-clamp-3">{p.problem}</p>
             <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-accent">Key Features</div>
             <ul className="mt-2 space-y-1.5 text-sm">
-              {p.features.map((f) => (
+              {p.features.slice(0, featured ? 5 : 3).map((f) => (
                 <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-accent" /> {f}</li>
               ))}
             </ul>
@@ -456,7 +634,7 @@ function ProjectCard({ p, i }: { p: typeof PROJECTS[number]; i: number }) {
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Architecture</div>
             <div className="mt-2 space-y-2">
-              {p.arch.map((a, idx) => (
+              {p.arch.slice(0, featured ? 6 : 4).map((a, idx) => (
                 <div key={a} className="flex items-center gap-3">
                   <div className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-primary/40 to-accent/30 font-mono text-[10px] text-white">{idx + 1}</div>
                   <div className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs">{a}</div>
@@ -476,17 +654,169 @@ function ProjectCard({ p, i }: { p: typeof PROJECTS[number]; i: number }) {
   );
 }
 
+function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+  const Icon = p.Icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-end justify-center overflow-y-auto bg-background/80 p-0 backdrop-blur-md sm:items-center sm:p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.98 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-3xl overflow-hidden rounded-t-3xl border border-white/10 bg-card/95 shadow-2xl sm:rounded-3xl"
+      >
+        {/* Header */}
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-card/80 px-5 py-4 backdrop-blur">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-gradient-to-br from-primary/50 to-accent/40 ring-1 ring-white/10">
+              <Icon className="h-5 w-5 text-white" />
+            </div>
+            <div className="min-w-0">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-accent">{p.category} · {p.timeline}</div>
+              <h3 className="truncate font-display text-lg font-semibold sm:text-xl">{p.title}</h3>
+            </div>
+          </div>
+          <button onClick={onClose} aria-label="Close" className="rounded-lg border border-white/10 bg-white/5 p-2 transition hover:bg-white/10">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="max-h-[75vh] overflow-y-auto px-5 py-6 sm:px-8">
+          <p className="font-mono text-xs text-muted-foreground">Role · {p.role}</p>
+
+          {/* Problem / Solution */}
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-accent">
+                <Target className="h-3.5 w-3.5" /> The Problem
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">{p.problem}</p>
+            </div>
+            <div className="rounded-2xl border border-accent/20 bg-accent/5 p-5">
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-accent">
+                <Lightbulb className="h-3.5 w-3.5" /> The Solution
+              </div>
+              <p className="mt-2 text-sm text-foreground/90">{p.solution}</p>
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="mt-6">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Key Features</div>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              {p.features.map((f) => (
+                <li key={f} className="flex items-start gap-2 rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2 text-sm">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-accent" /> {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Architecture + Stack */}
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Architecture</div>
+              <div className="mt-3 space-y-2">
+                {p.arch.map((a, idx) => (
+                  <div key={a} className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-primary/40 to-accent/30 font-mono text-[10px] text-white">{idx + 1}</div>
+                    <div className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs">{a}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Tech Stack</div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {p.stack.map((s) => (
+                  <span key={s} className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-muted-foreground">{s}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Challenges */}
+          <div className="mt-6">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-accent">
+              <Wrench className="h-3.5 w-3.5" /> Engineering Challenges
+            </div>
+            <div className="mt-3 space-y-3">
+              {p.challenges.map((c) => (
+                <div key={c.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                  <div className="font-display text-sm font-semibold">{c.title}</div>
+                  <p className="mt-1 text-sm text-muted-foreground">{c.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Learnings */}
+          <div className="mt-6">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-accent">
+              <Sparkles className="h-3.5 w-3.5" /> What I Learned
+            </div>
+            <ul className="mt-3 space-y-2">
+              {p.learnings.map((l) => (
+                <li key={l} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-accent" /> {l}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-8 flex flex-wrap gap-3 border-t border-white/10 pt-6">
+            {p.liveUrl && (
+              <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/30">
+                <ExternalLink className="h-4 w-4" /> Visit Live
+              </a>
+            )}
+            {p.githubUrl && (
+              <a href={p.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-medium transition hover:bg-white/10">
+                <Github className="h-4 w-4" /> View Code
+              </a>
+            )}
+            <button onClick={onClose} className="ml-auto inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm text-muted-foreground transition hover:text-foreground">
+              Close
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function Projects() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
     <Section id="projects">
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>Selected Projects</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">Things I've <span className="text-gradient-brand">shipped</span></h2>
-        <p className="mt-4 text-muted-foreground">A look at problems I've explored using cloud-native thinking.</p>
+        <p className="mt-4 text-muted-foreground">Real projects — problems, architectures, and the engineering trade-offs behind them.</p>
       </div>
-      <div className="mt-14 grid gap-6">
-        {PROJECTS.map((p, i) => <ProjectCard key={p.title} p={p} i={i} />)}
+      <div className="mt-14 grid gap-6 md:grid-cols-2">
+        {PROJECTS.map((p, i) => (
+          <ProjectCard key={p.title} p={p} i={i} onOpen={() => setOpenIdx(i)} />
+        ))}
       </div>
+      <AnimatePresence>
+        {openIdx !== null && (
+          <ProjectModal p={PROJECTS[openIdx]} onClose={() => setOpenIdx(null)} />
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
