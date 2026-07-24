@@ -8,6 +8,7 @@ import {
   Building2, BookOpen, Rocket, Lightbulb, Target, Wrench,
 } from "lucide-react";
 import snehal from "@/assets/snehal.jpeg.asset.json";
+import certificate from "@/assets/fortune-cloud-certificate.png.asset.json";
 
 // ============ CONTACT CONSTANTS ============
 const EMAIL = "snehalswami1192@gmail.com";
