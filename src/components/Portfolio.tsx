@@ -4,7 +4,7 @@ import {
   Cloud, Server, Database, Network, Shield, Activity, Box, Workflow,
   Github, Linkedin, Mail, MapPin, Download, ArrowRight, ExternalLink,
   Terminal, GitBranch, Container, Settings2, Cpu, HardDrive, Globe2,
-  CheckCircle2, Sparkles, Award, Code2, Zap, X, FileText, GraduationCap,
+  CheckCircle2, Sparkles, Award, Code2, Zap, X, GraduationCap,
   Building2, BookOpen, Rocket, Lightbulb, Target, Wrench,
 } from "lucide-react";
 import snehal from "@/assets/snehal.jpeg.asset.json";
