@@ -159,7 +159,7 @@ function Hero() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-3 font-medium text-white shadow-lg shadow-primary/30 transition hover:scale-[1.02] hover:shadow-accent/50">
+            <a href={RESUME_URL} download={RESUME_FILENAME} className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-3 font-medium text-white shadow-lg shadow-primary/30 transition hover:scale-[1.02] hover:shadow-accent/50">
               <Download className="h-4 w-4" /> Download Resume
             </a>
             <a href="#projects" className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-medium text-foreground backdrop-blur transition hover:bg-white/10">
