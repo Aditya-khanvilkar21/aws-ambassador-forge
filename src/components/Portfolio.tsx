@@ -989,6 +989,9 @@ function Contact() {
             <p className="mt-4 max-w-md text-muted-foreground">
               Open to internships, junior cloud engineer roles, and collaborations on AWS/DevOps projects.
             </p>
+            <a href={RESUME_URL} download={RESUME_FILENAME} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-accent/50">
+              <Download className="h-4 w-4" /> Download Resume (PDF)
+            </a>
             <div className="mt-8 space-y-3">
               <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:border-accent/40 sm:text-base">
                 <Mail className="h-5 w-5 shrink-0 text-accent" /> <span className="truncate">{EMAIL}</span>
