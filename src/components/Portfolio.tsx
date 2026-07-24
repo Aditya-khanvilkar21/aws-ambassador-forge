@@ -823,38 +823,110 @@ function Projects() {
 
 // ============ CERTIFICATION ============
 function Certification() {
+  const [open, setOpen] = useState(false);
   return (
     <Section id="cert">
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>Certification</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">Verified <span className="text-gradient-brand">cloud expertise</span></h2>
+        <p className="mt-4 text-muted-foreground">6-month intensive training in AWS Cloud Architecture & DevOps.</p>
       </div>
       <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-        className="relative mx-auto mt-12 max-w-2xl">
+        className="relative mx-auto mt-12 max-w-5xl">
         <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-aws/30 via-primary/20 to-accent/30 blur-3xl" />
-        <div className="relative glass-strong overflow-hidden rounded-3xl p-8 ring-glow">
-          <div className="flex items-center gap-4">
-            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[oklch(0.78_0.16_60)] to-[oklch(0.58_0.21_260)] shadow-xl">
-              <Award className="h-8 w-8 text-white" />
-            </div>
-            <div className="flex-1">
-              <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Issued Certification</div>
-              <h3 className="font-display text-2xl font-semibold">Master in Cloud Computing (AWS)</h3>
-            </div>
-            <div className="hidden md:block">
-              <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-center">
-                <div className="font-mono text-[10px] text-muted-foreground">VERIFIED</div>
-                <div className="font-display text-sm font-semibold text-green-400">● Active</div>
+        <div className="relative glass-strong overflow-hidden rounded-3xl p-6 ring-glow md:p-8">
+          <div className="grid gap-6 md:grid-cols-[1fr_1.1fr] md:items-center">
+            {/* Certificate image */}
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white p-2 shadow-2xl transition hover:scale-[1.01]"
+              aria-label="View full certificate"
+            >
+              <img
+                src={certificate.url}
+                alt="Certificate: Snehal Nandayya Swami — Master in Cloud Architecture (AWS + DevOps), Fortune Cloud Technologies"
+                loading="lazy"
+                className="w-full rounded-lg"
+              />
+              <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background/0 opacity-0 backdrop-blur-[2px] transition group-hover:bg-background/40 group-hover:opacity-100">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-accent px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+                  <ExternalLink className="h-3.5 w-3.5" /> View full size
+                </span>
+              </span>
+            </button>
+
+            {/* Details */}
+            <div>
+              <div className="flex items-center gap-4">
+                <div className="relative flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-[oklch(0.78_0.16_60)] to-[oklch(0.58_0.21_260)] shadow-xl">
+                  <Award className="h-7 w-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Issued Certification</div>
+                  <h3 className="font-display text-xl font-semibold sm:text-2xl">Master in Cloud Architecture <span className="text-accent">(AWS + DevOps)</span></h3>
+                </div>
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="font-mono text-[10px] text-muted-foreground">ISSUED BY</div>
+                  <div className="mt-0.5 font-display font-semibold">Fortune Cloud Technologies Pvt. Ltd.</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="font-mono text-[10px] text-muted-foreground">DURATION</div>
+                  <div className="mt-0.5 font-display font-semibold">Aug 2025 – Jan 2026</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="font-mono text-[10px] text-muted-foreground">GRADE</div>
+                  <div className="mt-0.5 font-display font-semibold text-accent">'A' Grade</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="font-mono text-[10px] text-muted-foreground">CERT No.</div>
+                  <div className="mt-0.5 font-mono text-xs font-semibold">FCTP2526/0262</div>
+                </div>
+              </div>
+
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-400/5 px-3 py-1 font-mono text-[11px] text-green-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 shadow-[0_0_8px_currentColor]" />
+                Verified · Active
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {["EC2", "S3", "IAM", "VPC", "RDS", "Route 53", "CloudWatch", "Auto Scaling", "Docker", "Kubernetes", "Jenkins", "Terraform"].map((s) => (
+                  <span key={s} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">{s}</span>
+                ))}
               </div>
             </div>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {["EC2", "S3", "IAM", "VPC", "RDS", "Route 53", "CloudWatch", "Auto Scaling"].map((s) => (
-              <div key={s} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-center font-mono text-xs">{s}</div>
-            ))}
-          </div>
         </div>
       </motion.div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/85 p-4 backdrop-blur-md"
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+            >
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close"
+                className="absolute right-3 top-3 z-10 rounded-lg bg-background/80 p-2 text-foreground backdrop-blur transition hover:bg-background"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <img src={certificate.url} alt="Full certificate" className="w-full" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
