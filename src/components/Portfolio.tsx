@@ -67,6 +67,10 @@ function Navbar() {
             </a>
           ))}
         </div>
+        <a href={RESUME_URL} download={RESUME_FILENAME}
+          className="ml-1 hidden items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-foreground transition hover:bg-white/10 sm:inline-flex">
+          <Download className="h-3.5 w-3.5" /> Resume
+        </a>
         <a href="#contact"
           className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-accent px-4 py-1.5 text-sm font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-accent/40">
           Hire Me <ArrowRight className="h-3.5 w-3.5" />
