@@ -576,7 +576,7 @@ function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: () => vo
       initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: i * 0.08 }}
       whileHover={{ y: -6 }}
-      className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-card/60 p-1 backdrop-blur transition hover:border-accent/40 hover:shadow-[0_30px_80px_-20px_var(--color-primary)] ${featured ? "md:col-span-2" : ""}`}>
+      className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-card/60 p-1 backdrop-blur transition hover:border-accent/40 hover:shadow-[0_30px_80px_-20px_var(--color-primary)]`}>
       <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/0 via-accent/20 to-primary/0 opacity-0 transition group-hover:opacity-100" />
       {featured && (
         <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
