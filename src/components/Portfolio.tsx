@@ -232,26 +232,32 @@ function About() {
         <p className="mt-4 text-muted-foreground">A timeline of how I'm shaping a career in cloud engineering.</p>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-3xl">
-        <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-accent via-primary to-transparent md:left-1/2" />
-        <div className="space-y-10">
+      <div className="relative mx-auto mt-16 max-w-4xl">
+        {/* Vertical timeline line: mobile left, desktop center */}
+        <div className="absolute left-8 top-0 h-full w-px bg-gradient-to-b from-accent via-primary to-transparent md:left-1/2 md:-translate-x-1/2" />
+
+        <div className="space-y-10 md:space-y-14">
           {TIMELINE.map((t, i) => {
             const Icon = t.icon;
-            const left = i % 2 === 0;
+            const isLeft = i % 2 === 0;
             return (
               <motion.div key={i}
-                initial={{ opacity: 0, x: left ? -30 : 30 }}
+                initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: i * 0.05 }}
-                className={`relative grid grid-cols-[48px_1fr] gap-4 md:grid-cols-2 md:gap-12 ${left ? "" : "md:[&>div:first-child]:order-2"}`}>
-                <div className={`md:${left ? "text-right md:pr-12" : "md:pl-12 md:col-start-2"}`}>
-                  <div className={`glass rounded-2xl p-5 transition hover:border-accent/40 ${left ? "md:ml-auto" : ""}`} style={{ maxWidth: 380 }}>
+                className="grid grid-cols-[64px_1fr] items-center gap-4 md:grid-cols-[1fr_64px_1fr] md:gap-8"
+              >
+                {/* Content card */}
+                <div className={`order-2 md:order-1 ${isLeft ? "md:col-start-1 md:text-right" : "md:col-start-3 md:text-left"}`}>
+                  <div className={`glass rounded-2xl p-5 text-left transition hover:border-accent/40 ${isLeft ? "md:ml-auto" : "md:mr-auto"}`} style={{ maxWidth: 380 }}>
                     <h3 className="font-display text-lg font-semibold">{t.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{t.desc}</p>
                   </div>
                 </div>
-                <div className="absolute left-6 -translate-x-1/2 md:left-1/2">
+
+                {/* Timeline node / icon */}
+                <div className="order-1 flex h-12 items-center justify-center md:order-2 md:col-start-2">
                   <div className="relative">
                     <span className="absolute inset-0 animate-pulse-ring rounded-full bg-accent/50" />
                     <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/40">
