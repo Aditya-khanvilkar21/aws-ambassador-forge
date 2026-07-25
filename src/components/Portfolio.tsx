@@ -581,7 +581,7 @@ function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: () => vo
       {featured && (
         <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
       )}
-      <div className="relative rounded-[1.4rem] bg-card/80 p-6 md:p-8">
+      <div className="relative flex h-full flex-col rounded-[1.4rem] bg-card/80 p-6 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
             {featured && (
