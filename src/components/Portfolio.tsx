@@ -808,7 +808,7 @@ function Projects() {
         <h2 className="text-4xl font-bold md:text-5xl">Things I've <span className="text-gradient-brand">shipped</span></h2>
         <p className="mt-4 text-muted-foreground">Real projects — problems, architectures, and the engineering trade-offs behind them.</p>
       </div>
-      <div className="mt-14 grid gap-6 md:grid-cols-2">
+      <div className="mt-14 grid gap-6 sm:grid-cols-2 sm:items-stretch lg:grid-cols-2">
         {PROJECTS.map((p, i) => (
           <ProjectCard key={p.title} p={p} i={i} onOpen={() => setOpenIdx(i)} />
         ))}
