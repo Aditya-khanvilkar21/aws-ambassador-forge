@@ -77,18 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Snehal Swami — Aspiring AWS Cloud Engineer" },
-      { name: "description", content: "Portfolio of Snehal Swami — designing scalable cloud infrastructure with AWS, Linux, Docker, Kubernetes and Terraform." },
       { name: "author", content: "Snehal Swami" },
       { name: "google-site-verification", content: "tZK-C0-0EejAl1nhraQ4eq1YSkPar6ASfNGy_h5b7fA" },
-      { property: "og:title", content: "Snehal Swami — Aspiring AWS Cloud Engineer" },
-      { property: "og:description", content: "Portfolio of Snehal Swami — designing scalable cloud infrastructure with AWS, Linux, Docker, Kubernetes and Terraform." },
+      { property: "og:site_name", content: "Snehal Swami" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Snehal Swami — Aspiring AWS Cloud Engineer" },
-      { name: "twitter:description", content: "Portfolio of Snehal Swami — designing scalable cloud infrastructure with AWS, Linux, Docker, Kubernetes and Terraform." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/20d94107-f559-4a70-b4bb-24b68e2a821b/id-preview-a8b1541e--4a3f4df8-471d-4f04-8eac-083843e0be44.lovable.app-1781891374303.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/20d94107-f559-4a70-b4bb-24b68e2a821b/id-preview-a8b1541e--4a3f4df8-471d-4f04-8eac-083843e0be44.lovable.app-1781891374303.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -99,7 +92,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Snehal Swami",
+          url: "https://snehalswami.in",
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
