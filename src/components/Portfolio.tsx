@@ -550,22 +550,23 @@ const PROJECTS: Project[] = [
     solution:
       "MSRS Academy is an online education platform that gives students a digital learning environment with centralized access to educational resources — deployed on the cloud and served from its own custom domain at msrsacademy.com.",
     overview:
-      "A responsive, student-facing learning platform built with Google AI Studio and deployed on Google Cloud — making coursework and learning resources available anywhere, on any device.",
+      "A responsive, student-facing learning platform built as a modern single-page web application and deployed on Google Cloud — making coursework and learning resources available anywhere, on any device.",
     features: [
       "Online education platform with student-facing interface",
       "Centralized access to learning resources",
+      "Single-page application with client-side routing",
       "Fully responsive website experience",
       "Custom domain integration (msrsacademy.com)",
       "Cloud-based deployment on Google Cloud",
     ],
-    stack: ["Google AI Studio", "Google Cloud", "Firebase", "GoDaddy DNS", "Custom Domain"],
-    arch: ["GoDaddy (Domain · msrsacademy.com)", "Google AI Studio (App Build)", "Firebase / Google Cloud (Hosting)", "Student Browser (Access)"],
+    stack: ["React", "TypeScript", "Firebase Hosting", "Google Cloud", "GoDaddy DNS", "Custom Domain"],
+    arch: ["GoDaddy (Domain · msrsacademy.com)", "React SPA (Client)", "Firebase Hosting / Google Cloud (Delivery)", "CDN + SSL (Global Access)", "Student Browser (Access)"],
     challenges: [
       { title: "Custom domain wiring", desc: "Connecting msrsacademy.com through GoDaddy DNS to the Google Cloud-hosted app with correct records and SSL." },
       { title: "Learning-first UX", desc: "Organizing resources so students can find what they need quickly instead of digging through scattered files." },
     ],
     learnings: [
-      "End-to-end platform delivery — from AI-assisted build to custom domain and cloud deployment.",
+      "End-to-end platform delivery — from frontend build to custom domain and cloud deployment.",
       "Evaluated Firebase as the hosting layer and shipped the production setup on Google Cloud.",
     ],
     liveUrl: "https://msrsacademy.com",
