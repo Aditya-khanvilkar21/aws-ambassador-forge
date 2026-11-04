@@ -431,7 +431,7 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    title: "Crackly",
+    title: "Trackalpha",
     role: "Founder & Full-Stack Developer",
     tag: "EdTech · CBT Platform",
     category: "Product",
@@ -441,7 +441,7 @@ const PROJECTS: Project[] = [
     problem:
       "Indian competitive exam aspirants (JEE, NEET, MHT-CET, GATE) lack an affordable, exam-realistic CBT platform. Existing tools are either paywalled, laggy, or don't render mathematical and scientific notation correctly — a dealbreaker for STEM prep.",
     solution:
-      "Crackly is a browser-based Computer Based Testing platform purpose-built for Indian competitive exams. It delivers a pixel-accurate replica of the real exam interface, renders LaTeX/KaTeX flawlessly, tracks per-topic performance, and works reliably on low-end devices.",
+      "Trackalpha is a browser-based Computer Based Testing platform purpose-built for Indian competitive exams. It delivers a pixel-accurate replica of the real exam interface, renders LaTeX/KaTeX flawlessly, tracks per-topic performance, and works reliably on low-end devices.",
     overview:
       "A production EdTech platform combining timed mock tests, live analytics, adaptive practice, and detailed solution walkthroughs — all in one exam-realistic environment students can trust the night before an exam.",
     features: [
@@ -464,7 +464,7 @@ const PROJECTS: Project[] = [
       "Learned to profile React re-renders — critical for a UI with a 180-question palette.",
       "Understood that in EdTech, trust > features. One wrong answer key destroys credibility.",
     ],
-    liveUrl: "https://crackly.in",
+    liveUrl: "https://trackalpha.in",
     githubUrl: GITHUB_URL,
   },
   {
@@ -534,7 +534,40 @@ const PROJECTS: Project[] = [
       "Built strong instincts for accessibility on low-end Android devices.",
       "Learned that bilingual UX is not translation — it's parallel design.",
     ],
+    liveUrl: "https://taporatnamahaesevakendra.online",
     githubUrl: GITHUB_URL,
+  },
+  {
+    title: "MSRS Academy",
+    role: "Developer",
+    tag: "EdTech · Learning Platform",
+    category: "Product",
+    timeline: "2026",
+    Icon: Globe2,
+    problem:
+      "Students need a centralized digital platform to access learning resources and academic services. Traditional learning environments make it hard to organize study material and offer a convenient online learning experience.",
+    solution:
+      "MSRS Academy is an online education platform that gives students a digital learning environment with centralized access to educational resources — deployed on the cloud and served from its own custom domain at msrsacademy.com.",
+    overview:
+      "A responsive, student-facing learning platform built with Google AI Studio and deployed on Google Cloud — making coursework and learning resources available anywhere, on any device.",
+    features: [
+      "Online education platform with student-facing interface",
+      "Centralized access to learning resources",
+      "Fully responsive website experience",
+      "Custom domain integration (msrsacademy.com)",
+      "Cloud-based deployment on Google Cloud",
+    ],
+    stack: ["Google AI Studio", "Google Cloud", "Firebase", "GoDaddy DNS", "Custom Domain"],
+    arch: ["GoDaddy (Domain · msrsacademy.com)", "Google AI Studio (App Build)", "Firebase / Google Cloud (Hosting)", "Student Browser (Access)"],
+    challenges: [
+      { title: "Custom domain wiring", desc: "Connecting msrsacademy.com through GoDaddy DNS to the Google Cloud-hosted app with correct records and SSL." },
+      { title: "Learning-first UX", desc: "Organizing resources so students can find what they need quickly instead of digging through scattered files." },
+    ],
+    learnings: [
+      "End-to-end platform delivery — from AI-assisted build to custom domain and cloud deployment.",
+      "Evaluated Firebase as the hosting layer and shipped the production setup on Google Cloud.",
+    ],
+    liveUrl: "https://msrsacademy.com",
   },
   {
     title: "Professional Portfolio",
