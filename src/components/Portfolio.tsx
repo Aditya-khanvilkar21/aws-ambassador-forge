@@ -468,7 +468,7 @@ const PROJECTS: Project[] = [
     githubUrl: GITHUB_URL,
   },
   {
-    title: "Digital Village Platform",
+    title: "Vihanhub",
     role: "Cloud & Backend Architect",
     tag: "Cloud · Civic Tech",
     category: "Infrastructure",
@@ -500,6 +500,7 @@ const PROJECTS: Project[] = [
       "Understood how IAM least-privilege actually works on a real project.",
       "Learned CloudFront cache invalidation is 90% of your operations pain.",
     ],
+    liveUrl: "https://vihanhub.in",
     githubUrl: GITHUB_URL,
   },
   {
