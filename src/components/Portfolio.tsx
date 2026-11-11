@@ -623,9 +623,6 @@ function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: () => vo
       whileHover={{ y: -6 }}
       className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-card/60 p-1 backdrop-blur transition hover:border-accent/40 hover:shadow-[0_30px_80px_-20px_var(--color-primary)]`}>
       <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/0 via-accent/20 to-primary/0 opacity-0 transition group-hover:opacity-100" />
-      {featured && (
-        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
-      )}
       <div className="relative flex h-full flex-col rounded-[1.4rem] bg-card/80 p-6 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
@@ -655,24 +652,24 @@ function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: () => vo
         </div>
 
         <div className="mt-5 flex items-start gap-4">
-          <div className={`flex flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-primary/40 to-accent/30 ring-1 ring-white/10 ${featured ? "h-16 w-16" : "h-12 w-12"}`}>
-            <Icon className={`text-white ${featured ? "h-8 w-8" : "h-6 w-6"}`} />
+          <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-primary/40 to-accent/30 ring-1 ring-white/10">
+            <Icon className="h-6 w-6 text-white" />
           </div>
           <div className="min-w-0">
-            <h3 className={`font-display font-bold ${featured ? "text-3xl md:text-4xl" : "text-2xl"}`}>{p.title}</h3>
+            <h3 className="font-display text-2xl font-bold leading-tight">{p.title}</h3>
             <p className="mt-1 font-mono text-xs text-muted-foreground">{p.role}</p>
           </div>
         </div>
 
         <p className="mt-4 text-muted-foreground">{p.overview}</p>
 
-        <div className={`mt-6 grid gap-6 ${featured ? "md:grid-cols-2" : ""}`}>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Problem</div>
             <p className="mt-1 text-sm text-muted-foreground line-clamp-3">{p.problem}</p>
             <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-accent">Key Features</div>
             <ul className="mt-2 space-y-1.5 text-sm">
-              {p.features.slice(0, featured ? 5 : 3).map((f) => (
+              {p.features.slice(0, 4).map((f) => (
                 <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-accent" /> {f}</li>
               ))}
             </ul>
@@ -680,7 +677,7 @@ function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: () => vo
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-accent">Architecture</div>
             <div className="mt-2 space-y-2">
-              {p.arch.slice(0, featured ? 6 : 4).map((a, idx) => (
+              {p.arch.slice(0, 4).map((a, idx) => (
                 <div key={a} className="flex items-center gap-3">
                   <div className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-gradient-to-br from-primary/40 to-accent/30 font-mono text-[10px] text-white">{idx + 1}</div>
                   <div className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs">{a}</div>
@@ -853,7 +850,7 @@ function Projects() {
         <h2 className="text-4xl font-bold md:text-5xl">Things I've <span className="text-gradient-brand">shipped</span></h2>
         <p className="mt-4 text-muted-foreground">Practical projects shaping my cloud engineering experience as I grow toward Snowflake data work.</p>
       </div>
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 sm:items-stretch lg:grid-cols-2">
+      <div className="mt-14 grid grid-cols-1 gap-6">
         {PROJECTS.map((p, i) => (
           <ProjectCard key={p.title} p={p} i={i} onOpen={() => setOpenIdx(i)} />
         ))}
