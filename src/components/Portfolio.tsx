@@ -82,7 +82,7 @@ function Navbar() {
 }
 
 // ============ HERO ============
-const ROLES = ["AWS Cloud Engineer", "DevOps Enthusiast", "Linux Learner", "Cloud Architect in Progress"];
+const ROLES = ["Aspiring Cloud Engineer", "Snowflake Engineering Learner", "DevOps Enthusiast", "Cloud Architect in Progress"];
 function Typewriter() {
   const [idx, setIdx] = useState(0);
   const [text, setText] = useState("");
@@ -142,21 +142,21 @@ function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
-            Available for Cloud Engineering Roles
+            Building toward Cloud & Snowflake Engineering
           </motion.div>
 
           <motion.h1 variants={fadeUp} className="text-5xl font-bold leading-[1.05] text-foreground md:text-7xl">
             <span className="block">Snehal Swami</span>
-            <span className="mt-2 block text-gradient-brand">Aspiring Cloud Engineer</span>
+            <span className="mt-2 block text-gradient-brand">Cloud & Snowflake Engineering</span>
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-6 text-lg text-muted-foreground md:text-xl">
-            Designing scalable cloud infrastructure, one deployment at a time. Building with{" "}
+            Growing my cloud engineering foundation while exploring Snowflake and modern data platforms. Building with{" "}
             <Typewriter />
           </motion.p>
 
           <motion.p variants={fadeUp} className="mt-4 max-w-xl text-base text-muted-foreground/80">
-            Building scalable cloud solutions using AWS, Linux, DevOps practices, and automation technologies.
+            Developing practical skills across AWS, Linux, DevOps, and Snowflake data engineering.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
@@ -204,7 +204,7 @@ function Hero() {
             </div>
             <div className="mt-3 grid grid-cols-3 gap-2 px-1 pb-1 font-mono text-[10px]">
               <div className="rounded-lg bg-white/5 p-2"><div className="text-muted-foreground">REGION</div><div className="text-accent">ap-south-1</div></div>
-              <div className="rounded-lg bg-white/5 p-2"><div className="text-muted-foreground">ROLE</div><div className="text-accent">CloudEngineer</div></div>
+              <div className="rounded-lg bg-white/5 p-2"><div className="text-muted-foreground">ROLE</div><div className="text-accent">Cloud + Data</div></div>
               <div className="rounded-lg bg-white/5 p-2"><div className="text-muted-foreground">STATUS</div><div className="text-green-400">● ACTIVE</div></div>
             </div>
           </div>
@@ -220,7 +220,8 @@ const TIMELINE = [
   { title: "B.Tech Computer Science Engineering", desc: "Deepening core CS, networks, and operating systems.", icon: Cpu },
   { title: "Cloud Architecture Training", desc: "Designing fault-tolerant, scalable cloud systems.", icon: Cloud },
   { title: "AWS & DevOps Learning", desc: "Hands-on with EC2, S3, IAM, Docker, Kubernetes, Terraform.", icon: Container },
-  { title: "Future Cloud Engineer", desc: "Building production-grade infra for real-world products.", icon: Sparkles },
+  { title: "Snowflake Engineering", desc: "Building a foundation in Snowflake and cloud data platforms.", icon: Database },
+  { title: "Career Goal", desc: "Growing toward practical cloud and data engineering work.", icon: Sparkles },
 ];
 
 function About() {
@@ -229,7 +230,7 @@ function About() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>About Me</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">From classroom to <span className="text-gradient-brand">cloud production</span></h2>
-        <p className="mt-4 text-muted-foreground">A timeline of how I'm shaping a career in cloud engineering.</p>
+        <p className="mt-4 text-muted-foreground">Building from cloud fundamentals toward Snowflake and data engineering.</p>
       </div>
 
       <div className="relative mx-auto mt-16 max-w-4xl">
@@ -298,6 +299,9 @@ const SKILL_GROUPS = [
     { n: "Git", t: "Version control" }, { n: "GitHub", t: "Code collaboration" },
     { n: "Linux", t: "Operating system" },
   ]},
+  { name: "Data Platforms", icon: Database, items: [
+    { n: "Snowflake", t: "Current learning focus" },
+  ]},
 ];
 
 function Skills() {
@@ -306,7 +310,7 @@ function Skills() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>Tech Stack</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">Cloud-native <span className="text-gradient-brand">tool belt</span></h2>
-        <p className="mt-4 text-muted-foreground">Technologies I use to design, deploy and operate scalable systems.</p>
+        <p className="mt-4 text-muted-foreground">Cloud and DevOps foundations, with Snowflake as my growing data-platform focus.</p>
       </div>
       <div className="mt-14 space-y-10">
         {SKILL_GROUPS.map((g, gi) => {
@@ -362,7 +366,7 @@ function Architecture() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>AWS Infrastructure</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">A typical <span className="text-gradient-brand">3-tier</span> on AWS</h2>
-        <p className="mt-4 text-muted-foreground">How I think about routing, compute, data, storage and observability.</p>
+        <p className="mt-4 text-muted-foreground">Exploring cloud infrastructure foundations alongside a growing interest in Snowflake data platforms.</p>
       </div>
 
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
@@ -847,7 +851,7 @@ function Projects() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>Selected Projects</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">Things I've <span className="text-gradient-brand">shipped</span></h2>
-        <p className="mt-4 text-muted-foreground">Real projects — problems, architectures, and the engineering trade-offs behind them.</p>
+        <p className="mt-4 text-muted-foreground">Practical projects shaping my cloud engineering experience as I grow toward Snowflake data work.</p>
       </div>
       <div className="mt-14 grid gap-6 sm:grid-cols-2 sm:items-stretch lg:grid-cols-2">
         {PROJECTS.map((p, i) => (
@@ -1025,16 +1029,16 @@ function Achievements() {
 }
 
 // ============ JOURNEY ============
-const JOURNEY = ["Linux", "Networking", "AWS", "Docker", "Kubernetes", "Terraform", "Cloud Engineering"];
-const J_ICONS = [Terminal, Network, Cloud, Container, Box, GitBranch, Sparkles];
+const JOURNEY = ["Linux", "Networking", "AWS", "Docker", "Kubernetes", "Terraform", "Snowflake", "Cloud + Data Engineering"];
+const J_ICONS = [Terminal, Network, Cloud, Container, Box, GitBranch, Database, Sparkles];
 
 function Journey() {
   return (
     <Section id="journey">
       <div className="mx-auto max-w-3xl text-center">
-        <SectionLabel>Cloud Engineering Journey</SectionLabel>
+        <SectionLabel>Cloud + Data Engineering Journey</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">The road to <span className="text-gradient-brand">production</span></h2>
-        <p className="mt-4 text-muted-foreground">A roadmap from system fundamentals to full cloud engineering.</p>
+        <p className="mt-4 text-muted-foreground">From system fundamentals and AWS toward Snowflake engineering.</p>
       </div>
       <div className="relative mt-14 overflow-hidden">
         <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between">
@@ -1101,7 +1105,7 @@ function Contact() {
             <SectionLabel>Contact</SectionLabel>
             <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Let's build the <span className="text-gradient-brand">cloud together</span></h2>
             <p className="mt-4 max-w-md text-muted-foreground">
-              Open to internships, junior cloud engineer roles, and collaborations on AWS/DevOps projects.
+              Open to internships and junior opportunities in cloud, AWS/DevOps, and Snowflake engineering.
             </p>
             <a href={RESUME_URL} download={RESUME_FILENAME} className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-medium text-white shadow-lg shadow-primary/30 transition hover:shadow-accent/50">
               <Download className="h-4 w-4" /> Download Resume (PDF)
@@ -1161,9 +1165,9 @@ function Footer() {
     <footer className="border-t border-white/5 py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
         <div className="flex items-center gap-2 font-display text-sm">
-          <Cloud className="h-4 w-4 text-accent" /> Snehal Swami · Cloud Engineering Portfolio
+          <Cloud className="h-4 w-4 text-accent" /> Snehal Swami · Cloud + Snowflake Engineering Portfolio
         </div>
-        <div className="font-mono text-xs text-muted-foreground">© {new Date().getFullYear()} · Built with React + AWS mindset</div>
+        <div className="font-mono text-xs text-muted-foreground">© {new Date().getFullYear()} · Growing across cloud and data platforms</div>
       </div>
     </footer>
   );
