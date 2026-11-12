@@ -299,8 +299,15 @@ const SKILL_GROUPS = [
     { n: "Git", t: "Version control" }, { n: "GitHub", t: "Code collaboration" },
     { n: "Linux", t: "Operating system" },
   ]},
-  { name: "Data Platforms", icon: Database, items: [
-    { n: "Snowflake", t: "Current learning focus" },
+  { name: "Snowflake Engineering", icon: Database, items: [
+    { n: "Snowflake", t: "Cloud data platform foundations" },
+    { n: "SQL", t: "Querying & transformations" },
+    { n: "Virtual Warehouses", t: "Cloud compute concepts" },
+    { n: "Stages + COPY INTO", t: "Batch data loading" },
+    { n: "Snowpipe", t: "Continuous ingestion concepts" },
+    { n: "Streams + Tasks", t: "Change processing & scheduling" },
+    { n: "RBAC", t: "Role-based access control" },
+    { n: "dbt", t: "Data transformation workflows" },
   ]},
 ];
 
