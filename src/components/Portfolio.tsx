@@ -368,12 +368,26 @@ function Architecture() {
     ["rds", "cw"], ["s3", "cw"],
   ];
   const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
+  const snowflakeNodes = [
+    { id: "sources", label: "Data Sources", sub: "Apps · Files · Events", x: 50, y: 8, Icon: Globe2 },
+    { id: "stage", label: "Cloud Stage", sub: "S3 · Azure · GCS", x: 50, y: 26, Icon: HardDrive },
+    { id: "ingestion", label: "Data Ingestion", sub: "Snowpipe · COPY INTO", x: 50, y: 44, Icon: Workflow },
+    { id: "storage", label: "Snowflake Storage", sub: "Centralized data", x: 50, y: 62, Icon: Database },
+    { id: "streams", label: "Streams + Tasks", sub: "Change processing", x: 25, y: 73, Icon: Activity },
+    { id: "warehouse", label: "Virtual Warehouses", sub: "SQL · dbt transforms", x: 75, y: 73, Icon: Cpu },
+    { id: "analytics", label: "BI + Applications", sub: "Trusted data products", x: 50, y: 91, Icon: Network },
+  ];
+  const snowflakeEdges: [string, string][] = [
+    ["sources", "stage"], ["stage", "ingestion"], ["ingestion", "storage"],
+    ["storage", "streams"], ["storage", "warehouse"], ["streams", "warehouse"], ["warehouse", "analytics"],
+  ];
+  const snowflakeById = Object.fromEntries(snowflakeNodes.map(n => [n.id, n]));
   return (
     <Section id="architecture">
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>AWS Infrastructure</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">A typical <span className="text-gradient-brand">3-tier</span> on AWS</h2>
-        <p className="mt-4 text-muted-foreground">Exploring cloud infrastructure foundations alongside a growing interest in Snowflake data platforms.</p>
+        <p className="mt-4 text-muted-foreground">Exploring both cloud infrastructure foundations and modern data-platform patterns.</p>
       </div>
 
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
@@ -392,6 +406,52 @@ function Architecture() {
           ))}
         </svg>
         {nodes.map((n) => {
+          const Icon = n.Icon;
+          return (
+            <motion.div key={n.id}
+              initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${n.x}%`, top: `${n.y}%` }}>
+              <div className="group flex flex-col items-center">
+                <div className="relative">
+                  <span className="absolute inset-0 animate-pulse-ring rounded-2xl bg-accent/40" />
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/40 ring-1 ring-white/20 sm:h-14 sm:w-14">
+                    <Icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
+                  </div>
+                </div>
+                <div className="mt-2 rounded-lg bg-background/80 px-2 py-0.5 text-center backdrop-blur">
+                  <div className="font-display text-xs font-semibold sm:text-sm">{n.label}</div>
+                  <div className="font-mono text-[9px] text-muted-foreground sm:text-[10px]">{n.sub}</div>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+
+      <div className="mx-auto mt-20 max-w-3xl text-center">
+        <SectionLabel>Snowflake Data Platform</SectionLabel>
+        <h3 className="text-3xl font-bold md:text-4xl">A modern <span className="text-gradient-brand">data pipeline</span></h3>
+        <p className="mt-4 text-muted-foreground">A common Snowflake flow from source data through ingestion and transformation to analytics.</p>
+      </div>
+
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
+        className="relative mt-12 aspect-[3/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-card/40 p-4 sm:aspect-[5/4] lg:aspect-[16/10]">
+        <div className="absolute inset-0 grid-bg opacity-50" />
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+          <defs>
+            <linearGradient id="snowflake-edge" x1="0" x2="1">
+              <stop offset="0%" stopColor="oklch(0.78 0.13 220)" />
+              <stop offset="100%" stopColor="oklch(0.58 0.21 260)" />
+            </linearGradient>
+          </defs>
+          {snowflakeEdges.map(([a, b], i) => (
+            <line key={i} x1={snowflakeById[a].x} y1={snowflakeById[a].y} x2={snowflakeById[b].x} y2={snowflakeById[b].y}
+              stroke="url(#snowflake-edge)" strokeWidth="0.25" className="animate-dash" opacity="0.7" />
+          ))}
+        </svg>
+        {snowflakeNodes.map((n) => {
           const Icon = n.Icon;
           return (
             <motion.div key={n.id}
