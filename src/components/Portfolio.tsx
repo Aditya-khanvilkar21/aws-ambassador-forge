@@ -1093,8 +1093,29 @@ function Achievements() {
 }
 
 // ============ JOURNEY ============
-const JOURNEY = ["Linux", "Networking", "AWS", "Docker", "Kubernetes", "Terraform", "Snowflake", "Cloud + Data Engineering"];
-const J_ICONS = [Terminal, Network, Cloud, Container, Box, GitBranch, Database, Sparkles];
+const JOURNEYS = [
+  {
+    title: "Cloud Engineering",
+    steps: [
+      { label: "Linux", Icon: Terminal },
+      { label: "Networking", Icon: Network },
+      { label: "AWS", Icon: Cloud },
+      { label: "Docker", Icon: Container },
+      { label: "Kubernetes", Icon: Box },
+      { label: "Terraform", Icon: GitBranch },
+    ],
+  },
+  {
+    title: "Snowflake Engineering",
+    steps: [
+      { label: "Snowflake", Icon: Database },
+      { label: "Data Warehouse", Icon: HardDrive },
+      { label: "Data Loading", Icon: Workflow },
+      { label: "SQL Transformations", Icon: Code2 },
+      { label: "Analytics", Icon: Activity },
+    ],
+  },
+];
 
 function Journey() {
   return (
@@ -1102,39 +1123,46 @@ function Journey() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>Cloud + Data Engineering Journey</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">The road to <span className="text-gradient-brand">production</span></h2>
-        <p className="mt-4 text-muted-foreground">From system fundamentals and AWS toward Snowflake engineering.</p>
+        <p className="mt-4 text-muted-foreground">Two learning paths, from cloud foundations to Snowflake data engineering.</p>
       </div>
-      <div className="relative mt-14 overflow-hidden">
-        <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between">
-          {JOURNEY.map((j, i) => {
-            const Icon = J_ICONS[i];
-            return (
-              <div key={j} className="flex items-center gap-3 md:flex-col md:gap-2">
-                <motion.div initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="relative">
-                  <span className="absolute inset-0 animate-pulse-ring rounded-2xl bg-accent/30" />
-                  <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
-                    <Icon className="h-6 w-6 text-white" />
+      <div className="mt-14 space-y-12">
+        {JOURNEYS.map((journey) => {
+          const gradientId = `journey-${journey.title.toLowerCase().replaceAll(" ", "-")}`;
+          return (
+          <div key={journey.title} className="border-t border-white/10 pt-7">
+            <h3 className="mb-6 font-display text-lg font-semibold text-accent">{journey.title}</h3>
+            <div className="relative overflow-hidden">
+              <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between">
+                {journey.steps.map(({ label, Icon }, i) => (
+                  <div key={label} className="flex items-center gap-3 md:flex-col md:gap-2">
+                    <motion.div initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                      className="relative">
+                      <span className="absolute inset-0 animate-pulse-ring rounded-2xl bg-accent/30" />
+                      <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                    </motion.div>
+                    <div className="font-display text-sm font-semibold md:text-center">{label}</div>
+                    {i < journey.steps.length - 1 && (
+                      <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground md:hidden" />
+                    )}
                   </div>
-                </motion.div>
-                <div className="font-display text-sm font-semibold md:text-center">{j}</div>
-                {i < JOURNEY.length - 1 && (
-                  <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground md:hidden" />
-                )}
+                ))}
               </div>
-            );
-          })}
-        </div>
-        <svg className="mt-4 hidden h-2 w-full md:block" viewBox="0 0 100 2" preserveAspectRatio="none">
-          <line x1="0" y1="1" x2="100" y2="1" stroke="url(#edge2)" strokeWidth="0.3" className="animate-dash" />
-          <defs>
-            <linearGradient id="edge2" x1="0" x2="1">
-              <stop offset="0%" stopColor="oklch(0.78 0.13 220)" />
-              <stop offset="100%" stopColor="oklch(0.58 0.21 260)" />
-            </linearGradient>
-          </defs>
-        </svg>
+              <svg className="mt-4 hidden h-2 w-full md:block" viewBox="0 0 100 2" preserveAspectRatio="none">
+                <line x1="0" y1="1" x2="100" y2="1" stroke={`url(#${gradientId})`} strokeWidth="0.3" className="animate-dash" />
+                <defs>
+                  <linearGradient id={gradientId} x1="0" x2="1">
+                    <stop offset="0%" stopColor="oklch(0.78 0.13 220)" />
+                    <stop offset="100%" stopColor="oklch(0.58 0.21 260)" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+          );
+        })}
       </div>
     </Section>
   );
