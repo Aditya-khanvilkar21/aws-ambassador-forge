@@ -147,7 +147,7 @@ function Hero() {
 
           <motion.h1 variants={fadeUp} className="text-5xl font-bold leading-[1.05] text-foreground md:text-7xl">
             <span className="block">Snehal Swami</span>
-            <span className="mt-2 block text-gradient-brand">Cloud & Snowflake Engineering</span>
+            <span className="mt-2 block text-gradient-brand">Cloud and Snowflake Engineer</span>
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-6 text-lg text-muted-foreground md:text-xl">
@@ -220,7 +220,7 @@ const TIMELINE = [
   { title: "B.Tech Computer Science Engineering", desc: "Deepening core CS, networks, and operating systems.", icon: Cpu },
   { title: "Cloud Architecture Training", desc: "Designing fault-tolerant, scalable cloud systems.", icon: Cloud },
   { title: "AWS & DevOps Learning", desc: "Hands-on with EC2, S3, IAM, Docker, Kubernetes, Terraform.", icon: Container },
-  { title: "Snowflake Engineering", desc: "Building a foundation in Snowflake and cloud data platforms.", icon: Database },
+  { title: "Snowflake Engineering", desc: "Learning SQL transformations, data loading with stages and Snowpipe, and scheduled processing with Streams and Tasks.", icon: Database },
   { title: "Career Goal", desc: "Growing toward practical cloud and data engineering work.", icon: Sparkles },
 ];
 
@@ -230,7 +230,7 @@ function About() {
       <div className="mx-auto max-w-3xl text-center">
         <SectionLabel>About Me</SectionLabel>
         <h2 className="text-4xl font-bold md:text-5xl">From classroom to <span className="text-gradient-brand">cloud production</span></h2>
-        <p className="mt-4 text-muted-foreground">Building from cloud fundamentals toward Snowflake and data engineering.</p>
+        <p className="mt-4 text-muted-foreground">Building on cloud fundamentals while developing Snowflake skills in SQL transformations, data loading, and scheduled processing.</p>
       </div>
 
       <div className="relative mx-auto mt-16 max-w-4xl">
