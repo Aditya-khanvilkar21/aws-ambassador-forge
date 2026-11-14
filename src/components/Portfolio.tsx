@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import snehal from "@/assets/snehal.jpeg.asset.json";
 import certificate from "@/assets/fortune-cloud-certificate.png.asset.json";
+import wisdomSproutsLetter from "@/assets/wisdom-sprouts-letter-of-intent.jpeg.asset.json";
 
 // ============ CONTACT CONSTANTS ============
 const EMAIL = "snehalswami1192@gmail.com";
@@ -46,7 +47,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 // ============ NAVBAR ============
 function Navbar() {
   const links = [
-    ["About", "about"], ["Skills", "skills"], ["Architecture", "architecture"],
+    ["About", "about"], ["Experience", "experience"], ["Skills", "skills"], ["Architecture", "architecture"],
     ["Projects", "projects"], ["Journey", "journey"], ["Contact", "contact"],
   ];
   return (
@@ -271,6 +272,94 @@ function About() {
           })}
         </div>
       </div>
+    </Section>
+  );
+}
+
+// ============ EXPERIENCE ==========
+function Experience() {
+  const [letterOpen, setLetterOpen] = useState(false);
+
+  return (
+    <Section id="experience">
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionLabel>Experience</SectionLabel>
+        <h2 className="text-4xl font-bold md:text-5xl">Learning through <span className="text-gradient-brand">real experience</span></h2>
+        <p className="mt-4 text-muted-foreground">A six-month training and internship program focused on building practical technical skills.</p>
+      </div>
+
+      <motion.article
+        initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.55 }}
+        className="relative mx-auto mt-12 max-w-5xl"
+      >
+        <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-2xl" />
+        <div className="relative glass-strong overflow-hidden rounded-2xl p-5 sm:p-7 md:p-9">
+          <div className="grid gap-7 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-10">
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-accent/20 text-accent">
+                  <Building2 className="h-6 w-6" />
+                </div>
+                <span className="rounded-full border border-accent/20 bg-accent/5 px-3 py-1 font-mono text-[11px] text-accent">OCT 2026 — APR 2027 · 6 MONTHS</span>
+              </div>
+              <h3 className="mt-5 font-display text-2xl font-bold sm:text-3xl">Freshers Incubation cum Internship Program</h3>
+              <p className="mt-2 text-lg font-medium text-foreground">Wisdom Sprouts IT Training Hub</p>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Selected after completing the screening process for the 2026–27 program. Beginning October 5, 2026, this six-month experience combines hands-on technical training, assignments, and professional skill development.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {["Technical Training", "Hands-on Assignments", "Professional Development"].map((item) => (
+                  <span key={item} className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-muted-foreground">{item}</span>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setLetterOpen(true)}
+              aria-label="View Wisdom Sprouts letter of intent"
+              className="group relative block w-full overflow-hidden rounded-xl border border-white/10 bg-white p-2 text-left shadow-xl transition hover:border-accent/40"
+            >
+              <img
+                src={wisdomSproutsLetter.url}
+                alt="Letter of Intent from Wisdom Sprouts IT Training Hub, dated September 30, 2026, for Snehal Nandayya Swami"
+                loading="lazy"
+                className="max-h-72 w-full rounded-lg object-contain object-top sm:max-h-80"
+              />
+              <span className="mt-2 flex items-center justify-center gap-2 px-2 py-2 text-sm font-medium text-foreground transition group-hover:text-accent">
+                <ExternalLink className="h-4 w-4" /> View letter of intent
+              </span>
+            </button>
+          </div>
+        </div>
+      </motion.article>
+
+      <AnimatePresence>
+        {letterOpen && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-3 backdrop-blur-md sm:p-6"
+            onClick={() => setLetterOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }}
+              onClick={(event) => event.stopPropagation()}
+              className="relative max-h-[92vh] w-full max-w-3xl overflow-auto rounded-xl bg-white p-2 shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setLetterOpen(false)}
+                aria-label="Close letter"
+                className="absolute right-3 top-3 z-10 rounded-lg bg-background/85 p-2 text-foreground backdrop-blur transition hover:bg-background"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <img src={wisdomSproutsLetter.url} alt="Full Wisdom Sprouts letter of intent" className="mx-auto h-auto w-full" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
@@ -1271,6 +1360,7 @@ export default function Portfolio() {
       <Navbar />
       <Hero />
       <About />
+      <Experience />
       <Skills />
       <Architecture />
       <Projects />
