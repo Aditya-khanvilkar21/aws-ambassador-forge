@@ -591,43 +591,6 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    title: "Trackalpha",
-    role: "Founder & Full-Stack Developer",
-    tag: "EdTech · CBT Platform",
-    category: "Product",
-    timeline: "2025 — Ongoing",
-    featured: true,
-    Icon: GraduationCap,
-    problem:
-      "Indian competitive exam aspirants (JEE, NEET, MHT-CET, GATE) lack an affordable, exam-realistic CBT platform. Existing tools are either paywalled, laggy, or don't render mathematical and scientific notation correctly — a dealbreaker for STEM prep.",
-    solution:
-      "Trackalpha is a browser-based Computer Based Testing platform purpose-built for Indian competitive exams. It delivers a pixel-accurate replica of the real exam interface, renders LaTeX/KaTeX flawlessly, tracks per-topic performance, and works reliably on low-end devices.",
-    overview:
-      "A production EdTech platform combining timed mock tests, live analytics, adaptive practice, and detailed solution walkthroughs — all in one exam-realistic environment students can trust the night before an exam.",
-    features: [
-      "Real exam simulation with question palette, timer & section switching",
-      "KaTeX rendering for math, physics & chemistry equations",
-      "Instant scoring, percentile & topic-wise analytics",
-      "Auth, attempt history & resume-in-progress support",
-      "Admin console to author question banks and mock papers",
-      "Mobile-responsive, works on 2G-tier networks",
-    ],
-    stack: ["React", "TypeScript", "Tailwind CSS", "Supabase (Postgres + Auth)", "KaTeX", "Vite", "Framer Motion"],
-    arch: ["React + Vite SPA", "Supabase Auth", "Postgres (RLS)", "Realtime Attempts", "Edge Functions", "CDN Delivery"],
-    challenges: [
-      { title: "Accurate math rendering", desc: "Balancing KaTeX bundle size vs. offline availability while keeping paint under 100ms on mid-tier phones." },
-      { title: "Cheat-resistant timers", desc: "Server-authoritative timing so tab switches, refreshes, or clock tampering can't extend an attempt." },
-      { title: "Row-level security", desc: "Designing Postgres RLS so students only see their own attempts while admins can grade at scale." },
-    ],
-    learnings: [
-      "Shipping a real product taught me production-grade Supabase RLS and auth flows.",
-      "Learned to profile React re-renders — critical for a UI with a 180-question palette.",
-      "Understood that in EdTech, trust > features. One wrong answer key destroys credibility.",
-    ],
-    liveUrl: "https://trackalpha.in",
-    githubUrl: GITHUB_URL,
-  },
-  {
     title: "Vihanhub",
     role: "Cloud & Backend Architect",
     tag: "Cloud · Civic Tech",
