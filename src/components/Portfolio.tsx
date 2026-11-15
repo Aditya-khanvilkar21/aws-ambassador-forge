@@ -695,6 +695,66 @@ const PROJECTS: Project[] = [
     liveUrl: "https://msrsacademy.com",
   },
   {
+    title: "Stenoverse",
+    role: "Digital Learning Platform",
+    tag: "EdTech · Stenography",
+    category: "Product",
+    timeline: "Learning Platform",
+    Icon: BookOpen,
+    problem:
+      "Stenography learners need an organized way to access learning materials and regularly practice listening, shorthand writing, transcription, typing, and time management.",
+    solution:
+      "STENO VERSE brings learning resources, shorthand and typing exercises, dictation practice, speed tests, and performance tracking into one digital platform for consistent practice and exam preparation.",
+    overview:
+      "A digital stenography learning and practice platform focused on building listening accuracy, shorthand writing, transcription speed, typing accuracy, and time management.",
+    features: [
+      "Organized stenography learning resources",
+      "Shorthand writing and typing exercises",
+      "Dictation practice for listening and transcription",
+      "Speed tests to practice under time limits",
+      "Performance tracking to monitor progress",
+      "Practice-oriented preparation for exams and professional opportunities",
+    ],
+    stack: [
+      "React.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "REST API",
+      "Firebase Authentication",
+      "Cloud Firestore",
+      "Firebase Storage",
+      "Firebase Hosting / Vercel",
+      "Git & GitHub",
+      "Postman",
+    ],
+    arch: [
+      "React Frontend",
+      "Node.js + Express REST API",
+      "Firebase Authentication",
+      "Cloud Firestore",
+      "Firebase Storage",
+      "Firebase Hosting / Vercel",
+    ],
+    challenges: [
+      {
+        title: "A consistent practice experience",
+        desc: "Bring learning materials, dictation, shorthand, typing, and speed exercises together in an organized environment.",
+      },
+      {
+        title: "Progress across multiple skills",
+        desc: "Make listening accuracy, transcription speed, typing accuracy, and time management easy to practice and review.",
+      },
+    ],
+    learnings: [
+      "Stenography practice needs attention to both speed and accuracy.",
+      "Organized exercises and progress visibility can support consistent learning.",
+    ],
+  },
+  {
     title: "Professional Portfolio",
     role: "Designer & Developer",
     tag: "Personal · Portfolio",
